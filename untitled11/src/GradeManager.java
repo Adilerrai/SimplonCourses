@@ -15,6 +15,7 @@ public class GradeManager {
 
 
     public ArrayList<Student> createStudent(Scanner scanner) {
+        // Create 
         System.out.print("Enter the student's name: ");
         String studentName = scanner.nextLine();
 

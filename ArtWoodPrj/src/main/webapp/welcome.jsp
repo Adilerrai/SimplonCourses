@@ -7,119 +7,361 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Responsive Sidebar</title>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-            overflow-x: hidden; /* Hide horizontal scrollbar */
-        }
-
-        #sidebar {
-            background-color: #343a40;
-            color: #fff;
-            min-height: 100vh;
-            transition: all 0.3s;
-        }
-
-        #sidebar a {
-            color: #fff;
-        }
-
-        #sidebar .active {
-            background-color: #007bff;
-        }
-
-        #content {
-            transition: margin-left 0.3s;
-            padding: 15px;
-        }
-
-        @media (max-width: 768px) {
-            #sidebar {
-                margin-left: -250px;
-            }
-
-            #sidebar.show {
-                margin-left: 0;
-            }
-
-            #content {
-                margin-left: 0;
-            }
-
-            #sidebar a {
-                display: block;
-                text-align: left;
-                padding: 10px;
-            }
-
-            #sidebar a:hover {
-                background-color: #007bff;
-            }
-        }
-    </style>
+    <title> Responsive Sidebar Menu  | CodingLab </title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
+<style>
+    /* Google Font Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins" , sans-serif;
+    }
+    .sidebar{
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 78px;
+        background: #11101D;
+        padding: 6px 14px;
+        z-index: 99;
+        transition: all 0.5s ease;
+    }
+    .sidebar.open{
+        width: 250px;
+    }
+    .sidebar .logo-details{
+        height: 60px;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    .sidebar .logo-details .icon{
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+    .sidebar .logo-details .logo_name{
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+    .sidebar.open .logo-details .icon,
+    .sidebar.open .logo-details .logo_name{
+        opacity: 1;
+    }
+    .sidebar .logo-details #btn{
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        font-size: 22px;
+        transition: all 0.4s ease;
+        font-size: 23px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.5s ease;
+    }
+    .sidebar.open .logo-details #btn{
+        text-align: right;
+    }
+    .sidebar i{
+        color: #fff;
+        height: 60px;
+        min-width: 50px;
+        font-size: 28px;
+        text-align: center;
+        line-height: 60px;
+    }
+    .sidebar .nav-list{
+        margin-top: 20px;
+        height: 100%;
+    }
+    .sidebar li{
+        position: relative;
+        margin: 8px 0;
+        list-style: none;
+    }
+    .sidebar li .tooltip{
+        position: absolute;
+        top: -20px;
+        left: calc(100% + 15px);
+        z-index: 3;
+        background: #fff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 15px;
+        font-weight: 400;
+        opacity: 0;
+        white-space: nowrap;
+        pointer-events: none;
+        transition: 0s;
+    }
+    .sidebar li:hover .tooltip{
+        opacity: 1;
+        pointer-events: auto;
+        transition: all 0.4s ease;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .sidebar.open li .tooltip{
+        display: none;
+    }
+    .sidebar input{
+        font-size: 15px;
+        color: #FFF;
+        font-weight: 400;
+        outline: none;
+        height: 50px;
+        width: 100%;
+        width: 50px;
+        border: none;
+        border-radius: 12px;
+        transition: all 0.5s ease;
+        background: #1d1b31;
+    }
+    .sidebar.open input{
+        padding: 0 20px 0 50px;
+        width: 100%;
+    }
+    .sidebar .bx-search{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        font-size: 22px;
+        background: #1d1b31;
+        color: #FFF;
+    }
+    .sidebar.open .bx-search:hover{
+        background: #1d1b31;
+        color: #FFF;
+    }
+    .sidebar .bx-search:hover{
+        background: #FFF;
+        color: #11101d;
+    }
+    .sidebar li a{
+        display: flex;
+        height: 100%;
+        width: 100%;
+        border-radius: 12px;
+        align-items: center;
+        text-decoration: none;
+        transition: all 0.4s ease;
+        background: #11101D;
+    }
+    .sidebar li a:hover{
+        background: #FFF;
+    }
+    .sidebar li a .links_name{
+        color: #fff;
+        font-size: 15px;
+        font-weight: 400;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.4s;
+    }
+    .sidebar.open li a .links_name{
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .sidebar li a:hover .links_name,
+    .sidebar li a:hover i{
+        transition: all 0.5s ease;
+        color: #11101D;
+    }
+    .sidebar li i{
+        height: 50px;
+        line-height: 50px;
+        font-size: 18px;
+        border-radius: 12px;
+    }
+    .sidebar li.profile{
+        position: fixed;
+        height: 60px;
+        width: 78px;
+        left: 0;
+        bottom: -8px;
+        padding: 10px 14px;
+        background: #1d1b31;
+        transition: all 0.5s ease;
+        overflow: hidden;
+    }
+    .sidebar.open li.profile{
+        width: 250px;
+    }
+    .sidebar li .profile-details{
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+    .sidebar li img{
+        height: 45px;
+        width: 45px;
+        object-fit: cover;
+        border-radius: 6px;
+        margin-right: 10px;
+    }
+    .sidebar li.profile .name,
+    .sidebar li.profile .job{
+        font-size: 15px;
+        font-weight: 400;
+        color: #fff;
+        white-space: nowrap;
+    }
+    .sidebar li.profile .job{
+        font-size: 12px;
+    }
+    .sidebar .profile #log_out{
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        background: #1d1b31;
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        border-radius: 0px;
+        transition: all 0.5s ease;
+    }
+    .sidebar.open .profile #log_out{
+        width: 50px;
+        background: none;
+    }
+    .home-section{
+        position: relative;
+        background: #E4E9F7;
+        min-height: 100vh;
+        top: 0;
+        left: 78px;
+        width: calc(100% - 78px);
+        transition: all 0.5s ease;
+        z-index: 2;
+    }
+    .sidebar.open ~ .home-section{
+        left: 250px;
+        width: calc(100% - 250px);
+    }
+    .home-section .text{
+        display: inline-block;
+        color: #11101d;
+        font-size: 25px;
+        font-weight: 500;
+        margin: 18px
+    }
+    @media (max-width: 420px) {
+        .sidebar li .tooltip{
+            display: none;
+        }
+    }
+</style>
 <body>
-
-<div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <div class="bg-dark text-white" id="sidebar">
-        <div class="sidebar-heading">Dashboard</div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><a href="#" class="nav-link">Dashboard</a></li>
-            <li class="list-group-item"><a href="#" class="nav-link">Orders</a></li>
-            <li class="list-group-item"><a href="#" class="nav-link">Clients</a></li>
-            <li class="list-group-item"><a href="#" class="nav-link">Products</a></li>
-        </ul>
+<div class="sidebar">
+    <div class="logo-details">
+        <i class='bx bxl-c-plus-plus icon'></i>
+        <div class="logo_name">CodingLab</div>
+        <i class='bx bx-menu' id="btn" ></i>
     </div>
-    <!-- /Sidebar -->
-
-    <!-- Page Content -->
-    <div id="content">
-
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <button class="btn btn-dark" id="menu-toggle">&#9776; Toggle Sidebar</button>
-        </nav>
-
-        <div class="container-fluid">
-            <!-- Page Content Goes Here -->
-            <h2>Welcome to Your Dashboard</h2>
-            <!-- Add more content as needed -->
-        </div>
-
-    </div>
-    <!-- /Page Content -->
-
+    <ul class="nav-list">
+        <li>
+            <i class='bx bx-search' ></i>
+            <input type="text" placeholder="Search...">
+            <span class="tooltip">Search</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-grid-alt'></i>
+                <span class="links_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-user' ></i>
+                <span class="links_name">Client</span>
+            </a>
+            <span class="tooltip">Client</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-pie-chart-alt-2' ></i>
+                <span class="links_name">Product</span>
+            </a>
+            <span class="tooltip">Product</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-cart-alt' ></i>
+                <span class="links_name">Order</span>
+            </a>
+            <span class="tooltip">Order</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-heart' ></i>
+                <span class="links_name">Saved</span>
+            </a>
+            <span class="tooltip">Saved</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-cog' ></i>
+                <span class="links_name">Setting</span>
+            </a>
+            <span class="tooltip">Setting</span>
+        </li>
+        <li class="profile">
+            <div class="profile-details">
+                <img src="profile.jpg" alt="profileImg">
+                <div class="name_job">
+                    <div class="name">Prem Shahi</div>
+                    <div class="job">Web designer</div>
+                </div>
+            </div>
+            <i class='bx bx-log-out' id="log_out" ></i>
+        </li>
+    </ul>
 </div>
-<!-- /Wrapper -->
-
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-<!-- Custom script for sidebar toggle -->
+<section class="home-section">
+    <div class="text">Dashboard</div>
+</section>
 <script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-        $("#sidebar").toggleClass("show");
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
+    let searchBtn = document.querySelector(".bx-search");
+
+    closeBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("open");
+        menuBtnChange();//calling the function(optional)
     });
+
+    searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+        sidebar.classList.toggle("open");
+        menuBtnChange(); //calling the function(optional)
+    });
+
+    // following are the code to change sidebar button(optional)
+    function menuBtnChange() {
+        if(sidebar.classList.contains("open")){
+            closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+        }else {
+            closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+        }
+    }
 </script>
-
 </body>
-
 </html>

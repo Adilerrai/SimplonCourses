@@ -23,8 +23,8 @@ public class LoginServlet extends HttpServlet {
             ps.setString(1, n);
             ps.setString(2, p);
             ResultSet rs=ps.executeQuery();
+            out.println(rs);
             if (rs.next()) {
-
                 RequestDispatcher rd =request.getRequestDispatcher("welcome.jsp");
                 rd.forward(request, response);
             }

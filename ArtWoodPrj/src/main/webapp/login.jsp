@@ -141,8 +141,13 @@
             <div class="contact">
                 <form action="LoginServlet" method="post">
                     <h3>SIGN IN</h3>
+<<<<<<< HEAD
                     <input type="text" name="username" placeholder="USERNAME">
                     <input type="password" name="password" placeholder="PASSWORD">
+=======
+                    <input type="text" name="txtName" placeholder="USERNAME">
+                    <input type="password" name="txtPwd" placeholder="PASSWORD">
+>>>>>>> origin/main
                     <button class="submit">Submit</button>
                 </form>
             </div>
@@ -161,4 +166,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> origin/main

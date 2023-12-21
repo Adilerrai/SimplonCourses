@@ -141,8 +141,8 @@
             <div class="contact">
                 <form action="LoginServlet" method="post">
                     <h3>SIGN IN</h3>
-                    <input type="text" name="txtName" placeholder="USERNAME">
-                    <input type="password" name="txtPwd" placeholder="PASSWORD">
+                    <input type="text" name="username" placeholder="USERNAME">
+                    <input type="password" name="password" placeholder="PASSWORD">
                     <button class="submit">Submit</button>
                 </form>
             </div>

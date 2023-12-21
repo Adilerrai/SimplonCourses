@@ -4,11 +4,16 @@
 <web-app>
   <servlet>
   <servlet-name>abc</servlet-name>
-    <servlet-class>com.artwoorf.LoginServlet</servlet-class>
+    <servlet-class>com.ArtWood.servlet.LoginServlet</servlet-class>
 </servlet>
   <servlet-mapping>
     <servlet-name>abc</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>login.jsp</welcome-file>
+    <!-- Add more welcome files if needed -->
+  </welcome-file-list>
+
 </web-app>
 

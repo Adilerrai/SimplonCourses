@@ -6,6 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.ArtWood.model.Article" %>
+<%@ page import="com.ArtWood.dao.ArticleDao" %>
+
+<%
+    ArticleDao articleData = new ArticleDao();
+    List<Article> articles = articleData.getAllArticles();
+    request.setAttribute("BOOKS_LIST", articles);
+%>
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
 <html lang="en" dir="ltr">
@@ -16,6 +25,20 @@
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <title>CRUD Application</title>
+
+    <style>
+        .inner {
+            margin: 15px 0;
+        }
+    </style>
+</head>
 </head>
 <style>
     /* Google Font Link */
@@ -273,7 +296,7 @@
 <div class="sidebar">
     <div class="logo-details">
         <i class='bx bxl-c-plus-plus icon'></i>
-        <div class="logo_name">CodingLab</div>
+        <div class="logo_name">ArtWood</div>
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
@@ -283,28 +306,28 @@
             <span class="tooltip">Search</span>
         </li>
         <li>
-            <a href="#">
+            <a href="dashboard.jsp">
                 <i class='bx bx-grid-alt'></i>
                 <span class="links_name">Dashboard</span>
             </a>
             <span class="tooltip">Dashboard</span>
         </li>
         <li>
-            <a href="#">
+            <a href="clients.jsp">
                 <i class='bx bx-user' ></i>
                 <span class="links_name">Client</span>
             </a>
             <span class="tooltip">Client</span>
         </li>
         <li>
-            <a href="#">
+            <a href="articles.jsp">
                 <i class='bx bx-pie-chart-alt-2' ></i>
                 <span class="links_name">Product</span>
             </a>
             <span class="tooltip">Product</span>
         </li>
         <li>
-            <a href="#">
+            <a href="ordre.jsp">
                 <i class='bx bx-cart-alt' ></i>
                 <span class="links_name">Order</span>
             </a>
@@ -328,8 +351,8 @@
             <div class="profile-details">
                 <img src="profile.jpg" alt="profileImg">
                 <div class="name_job">
-                    <div class="name">Prem Shahi</div>
-                    <div class="job">Web designer</div>
+                    <div class="name">Adil</div>
+                    <div class="job">Admin</div>
                 </div>
             </div>
             <i class='bx bx-log-out' id="log_out" ></i>
@@ -338,6 +361,9 @@
 </div>
 <section class="home-section">
     <div class="text">Dashboard</div>
+
+
+
 </section>
 <script>
     let sidebar = document.querySelector(".sidebar");
